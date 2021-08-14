@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         ),
         home: MovieListScreen(),
         routes: {
-          // MovieAddScreen.routeName: (ctx) => MovieAddScreen(),
+          MovieAddScreen.routeName: (ctx) => MovieAddScreen(),
         },
       ),
     );

@@ -11,12 +11,12 @@ class MovieListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Your Places'),
+        title: Text('Your Movies'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add),
             onPressed: () {
-              // Navigator.of(context).pushNamed(MovieAddScreen.routeName);
+              Navigator.of(context).pushNamed(MovieAddScreen.routeName);
             },
           ),
         ],
