@@ -1,9 +1,7 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:movie_list_app/models/movie.dart';
 import 'package:movie_list_app/providers/movies.dart';
+import 'package:movie_list_app/screens/movie_edit_screen.dart';
 import 'package:provider/provider.dart';
 
 class MovieItem extends StatefulWidget {
@@ -36,28 +34,15 @@ class _MovieItemState extends State<MovieItem> {
           style: Theme.of(context).textTheme.headline6,
         ),
         subtitle: Text(widget._movie.director),
-        // trailing: Row(
-        //   children: [
-        //     IconButton(
-        //       icon: Icon(Icons.edit),
-        //       color: Theme.of(context).accentColor,
-        //       onPressed: null,
-        //     ),
-        //     IconButton(
-        //       icon: Icon(Icons.delete),
-        //       color: Theme.of(context).errorColor,
-        //       onPressed: () =>
-        //           Provider.of<Movies>(context).deleteData(widget._movie.id),
-        //     ),
-        //   ],
-        // ),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             IconButton(
               icon: Icon(Icons.edit),
               color: Theme.of(context).accentColor,
-              onPressed: null,
+              onPressed: () => Navigator.of(context).pushNamed(
+                  MovieEditScreen.routeName,
+                  arguments: widget._movie.id),
             ),
             IconButton(
               icon: Icon(Icons.delete),

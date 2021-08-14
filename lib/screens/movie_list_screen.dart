@@ -41,28 +41,6 @@ class MovieListScreen extends StatelessWidget {
                         : ListView.builder(
                             itemCount: movies.items.length,
                             itemBuilder: (ctx, i) => MovieItem(movies.items[i]),
-                            // itemBuilder: (ctx, i) => Card(
-                            //   elevation: 5,
-                            //   margin: EdgeInsets.symmetric(
-                            //     vertical: 8,
-                            //     horizontal: 5,
-                            //   ),
-                            //   child: ListTile(
-                            //     leading: CircleAvatar(
-                            //       backgroundImage: FileImage(
-                            //         movies.items[i].image,
-                            //       ),
-                            //     ),
-                            //     title: Text(
-                            //       movies.items[i].title,
-                            //       style: Theme.of(context).textTheme.headline6,
-                            //     ),
-                            //     subtitle: Text(
-                            //       movies.items[i].director,
-                            //       style: Theme.of(context).textTheme.bodyText2,
-                            //     ),
-                            //   ),
-                            // ),
                           ),
                   ),
       ),

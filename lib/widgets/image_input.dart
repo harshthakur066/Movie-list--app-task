@@ -39,6 +39,7 @@ class _ImageInputState extends State<ImageInput> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget._onSelectImage);
     return Row(
       children: <Widget>[
         Container(
