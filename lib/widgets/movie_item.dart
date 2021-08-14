@@ -51,11 +51,21 @@ class _MovieItemState extends State<MovieItem> {
         //     ),
         //   ],
         // ),
-        trailing: IconButton(
-          icon: Icon(Icons.delete),
-          color: Theme.of(context).errorColor,
-          onPressed: () => Provider.of<Movies>(context, listen: false)
-              .deleteData(widget._movie.id),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            IconButton(
+              icon: Icon(Icons.edit),
+              color: Theme.of(context).accentColor,
+              onPressed: null,
+            ),
+            IconButton(
+              icon: Icon(Icons.delete),
+              color: Theme.of(context).errorColor,
+              onPressed: () => Provider.of<Movies>(context, listen: false)
+                  .deleteData(widget._movie.id),
+            ),
+          ],
         ),
       ),
     );
