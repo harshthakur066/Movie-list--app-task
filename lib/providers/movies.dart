@@ -35,6 +35,7 @@ class Movies with ChangeNotifier {
         'image': newMovie.image.path,
       },
     );
+    print('Added Movie');
   }
 
   Future<void> editData(String id, Movie editedMovie) async {
@@ -52,6 +53,7 @@ class Movies with ChangeNotifier {
             'image': editedMovie.image.path,
           },
           id);
+      print('Updated Movie');
     } else {
       print('Update fail');
     }
@@ -70,6 +72,7 @@ class Movies with ChangeNotifier {
         )
         .toList();
     notifyListeners();
+    print('Fetched Movies');
   }
 
   Future<void> deleteData(String id) async {
@@ -79,5 +82,6 @@ class Movies with ChangeNotifier {
     notifyListeners();
 
     await DBHelper.delete('Movies', id);
+    print('Deleted Movie');
   }
 }

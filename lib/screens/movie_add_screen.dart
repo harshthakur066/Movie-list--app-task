@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:movie_list_app/models/movie.dart';
 import 'package:movie_list_app/providers/movies.dart';
+import 'package:movie_list_app/widgets/image_input.dart';
 import 'package:provider/provider.dart';
 
 class MovieAddScreen extends StatefulWidget {
@@ -64,24 +65,20 @@ class _MovieAddScreenState extends State<MovieAddScreen> {
                     decoration: InputDecoration(labelText: 'Director'),
                     controller: _directorController,
                   ),
-                  SizedBox(height: 10),
-                  // ImageInput(_selectImage),
-                  SizedBox(height: 10),
+                  SizedBox(height: 20),
+                  ImageInput(_selectImage),
                 ],
               ),
             ),
           )),
-          ElevatedButton.icon(
+          RaisedButton.icon(
             onPressed: _saveMovie,
             icon: Icon(Icons.add),
-            label: Text('Add Spot'),
-            // materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-            // color: Theme.of(context).accentColor,
+            label: Text('Add Movie'),
+            elevation: 0,
+            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            color: Theme.of(context).accentColor,
             // textColor: Colors.white,
-            style: ElevatedButton.styleFrom(
-              textStyle: const TextStyle(color: Colors.white),
-              shadowColor: Theme.of(context).accentColor,
-            ),
           ),
         ],
       ),
