@@ -76,6 +76,8 @@ class Movies with ChangeNotifier {
   }
 
   Future<void> deleteData(String id) async {
+    print('function call');
+    print('id $id');
     final existingMovieIndex = _items.indexWhere((prod) => prod.id == id);
     // var existingMovie = _items[existingMovieIndex];
     _items.removeAt(existingMovieIndex);

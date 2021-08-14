@@ -5,10 +5,10 @@ class DBHelper {
   static Future<sql.Database> database() async {
     final dbPath = await sql.getDatabasesPath();
     return sql.openDatabase(
-      path.join(dbPath, 'places.db'),
+      path.join(dbPath, 'movies.db'),
       onCreate: (db, version) {
         return db.execute(
-          'CREATE TABLE places(id TEXT PRIMARY KEY, title TEXT, director TEXT,image TEXT)',
+          'CREATE TABLE Movies(id TEXT PRIMARY KEY, title TEXT, director TEXT,image TEXT)',
         );
       },
       version: 1,
