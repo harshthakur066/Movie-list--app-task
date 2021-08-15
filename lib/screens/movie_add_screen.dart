@@ -66,7 +66,7 @@ class _MovieAddScreenState extends State<MovieAddScreen> {
                     controller: _directorController,
                   ),
                   SizedBox(height: 20),
-                  ImageInput(_selectImage),
+                  ImageInput(_selectImage, null),
                 ],
               ),
             ),

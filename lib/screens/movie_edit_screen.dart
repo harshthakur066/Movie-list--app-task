@@ -8,6 +8,11 @@ import 'package:provider/provider.dart';
 
 class MovieEditScreen extends StatefulWidget {
   static const routeName = '/edit-movie';
+  // late String _prevTitle;
+  // late String _pevDirector;
+  // late File _prevImage;
+
+  // MovieEditScreen(this._prevTitle, this._pevDirector, this._prevImage);
   MovieEditScreen({Key? key}) : super(key: key);
 
   @override
@@ -19,26 +24,47 @@ class _MovieEditScreenState extends State<MovieEditScreen> {
   final _directorController = TextEditingController();
   File? _pickedImage;
 
+  @override
+  void initState() {
+    super.initState();
+    initializeMovie();
+  }
+
+  void initializeMovie() {
+    final movieId = ModalRoute.of(context)?.settings.arguments as String;
+    final loadedMovie =
+        Provider.of<Movies>(context, listen: false).findById(movieId);
+    _tiltleController.text = loadedMovie.title;
+    _directorController.text = loadedMovie.director;
+    _pickedImage = loadedMovie.image;
+  }
+
   void _selectImage(File pickedImage) {
     _pickedImage = pickedImage;
   }
 
-  void _editMovie(movie) {
-    if (_tiltleController.text.isEmpty ||
-        _directorController.text.isEmpty ||
-        _pickedImage == null) {
-      return;
-    }
+  void _editMovie() {
+    print('screen call');
+    // if (_tiltleController.text.isEmpty ||
+    //     _directorController.text.isEmpty ||
+    //     _pickedImage == null) {
+    //   return;
+    // }
+    final movieId = ModalRoute.of(context)?.settings.arguments as String;
+    // final loadedMovie =
+    //     Provider.of<Movies>(context, listen: false).findById(movieId);
+    // print(loadedMovie.image);
 
     var _editedData = Movie(
-      id: movie.id,
-      title: movie.text,
-      director: movie.text,
-      image: movie.image as File,
+      id: movieId,
+      title: _tiltleController.text,
+      director: _directorController.text,
+      image: _pickedImage as File,
     );
 
-    Provider.of<Movies>(context, listen: false).editData(movie.id, _editedData);
+    Provider.of<Movies>(context, listen: false).editData(movieId, _editedData);
     Navigator.of(context).pop();
+    print('done');
   }
 
   @override
@@ -67,18 +93,18 @@ class _MovieEditScreenState extends State<MovieEditScreen> {
                   ),
                   SizedBox(height: 20),
                   TextField(
-                    decoration: InputDecoration(labelText: 'Director'),
-                    controller:
-                        TextEditingController(text: loadedMovie.director),
-                  ),
+                      decoration: InputDecoration(labelText: 'Director'),
+                      controller: _directorController
+                      // TextEditingController(text: loadedMovie.director),
+                      ),
                   SizedBox(height: 20),
-                  ImageInput(_selectImage),
+                  ImageInput(_selectImage, _pickedImage),
                 ],
               ),
             ),
           )),
           RaisedButton.icon(
-            onPressed: () => _editMovie(loadedMovie),
+            onPressed: _editMovie,
             icon: Icon(Icons.add),
             label: Text('Save Changes'),
             elevation: 0,

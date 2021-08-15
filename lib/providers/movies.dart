@@ -39,7 +39,10 @@ class Movies with ChangeNotifier {
   }
 
   Future<void> editData(String id, Movie editedMovie) async {
+    print('call Provider');
+    print(editedMovie.title);
     final movieIndex = _items.indexWhere((element) => element.id == id);
+    print(movieIndex);
     if (movieIndex >= 0) {
       _items[movieIndex] = editedMovie;
       notifyListeners();

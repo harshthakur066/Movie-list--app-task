@@ -8,15 +8,16 @@ import 'package:image_picker/image_picker.dart';
 
 class ImageInput extends StatefulWidget {
   final Function _onSelectImage;
+  File? _image;
 
-  ImageInput(this._onSelectImage);
+  ImageInput(this._onSelectImage, this._image);
 
   @override
   _ImageInputState createState() => _ImageInputState();
 }
 
 class _ImageInputState extends State<ImageInput> {
-  File? _storedImage;
+  late File? _storedImage;
   final _picker = ImagePicker();
 
   Future<void> _takePicture() async {
@@ -38,6 +39,10 @@ class _ImageInputState extends State<ImageInput> {
   }
 
   @override
+  void initState() {
+    _storedImage = widget._image;
+  }
+
   Widget build(BuildContext context) {
     print(widget._onSelectImage);
     return Row(
