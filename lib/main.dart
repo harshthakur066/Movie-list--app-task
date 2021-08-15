@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:movie_list_app/screens/intro_screen.dart';
 import 'package:movie_list_app/screens/movie_edit_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -33,11 +34,12 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Movie List App',
         theme: ThemeData(
-          primarySwatch: Colors.deepPurple,
-          accentColor: Colors.amber,
+          primarySwatch: Colors.teal,
+          accentColor: Colors.blueGrey,
         ),
-        home: MovieListScreen(),
+        home: IntroScreen(),
         routes: {
+          MovieListScreen.routeName: (ctx) => MovieListScreen(),
           MovieAddScreen.routeName: (ctx) => MovieAddScreen(),
           MovieEditScreen.routeName: (ctx) => MovieEditScreen(),
         },

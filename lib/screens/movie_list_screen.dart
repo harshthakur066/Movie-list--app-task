@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:movie_list_app/screens/movie_add_screen.dart';
 
 class MovieListScreen extends StatelessWidget {
+  static const routeName = '/list-movie';
   const MovieListScreen({Key? key}) : super(key: key);
 
   @override

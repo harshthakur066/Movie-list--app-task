@@ -73,8 +73,14 @@ class _MovieAddScreenState extends State<MovieAddScreen> {
           )),
           RaisedButton.icon(
             onPressed: _saveMovie,
-            icon: Icon(Icons.add),
-            label: Text('Add Movie'),
+            icon: Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
+            label: Text(
+              'Add Movie',
+              style: TextStyle(color: Colors.white),
+            ),
             elevation: 0,
             materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
             color: Theme.of(context).accentColor,
