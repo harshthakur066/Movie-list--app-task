@@ -32,6 +32,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider.value(
       value: Movies(),
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Movie List App',
         theme: ThemeData(
           primarySwatch: Colors.teal,

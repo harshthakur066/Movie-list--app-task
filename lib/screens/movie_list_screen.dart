@@ -44,6 +44,7 @@ class MovieListScreen extends StatelessWidget {
                           await Provider.of<Movies>(context).fetchData();
                         },
                         child: ListView.builder(
+                          reverse: true,
                           itemCount: movies.items.length,
                           itemBuilder: (ctx, i) => MovieItem(movies.items[i]),
                         ),
