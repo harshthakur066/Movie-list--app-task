@@ -1,11 +1,8 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:movie_list_app/providers/google_signin.dart';
 import 'package:movie_list_app/screens/home_sceen.dart';
-import 'package:movie_list_app/screens/intro_screen.dart';
 import 'package:movie_list_app/screens/movie_edit_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -13,8 +10,6 @@ import 'package:movie_list_app/screens/movie_add_screen.dart';
 import 'package:movie_list_app/screens/movie_list_screen.dart';
 
 import './providers/movies.dart';
-
-import 'screens/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

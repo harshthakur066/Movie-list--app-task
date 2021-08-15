@@ -8,7 +8,7 @@ import 'package:image_picker/image_picker.dart';
 
 class ImageInput extends StatefulWidget {
   final Function _onSelectImage;
-  File? _image;
+  final File? _image;
 
   ImageInput(this._onSelectImage, this._image);
 
@@ -40,6 +40,7 @@ class _ImageInputState extends State<ImageInput> {
 
   @override
   void initState() {
+    super.initState();
     _storedImage = widget._image;
   }
 

@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_list_app/providers/google_signin.dart';
+import 'package:movie_list_app/screens/intro_ios_screen.dart';
 import 'package:movie_list_app/screens/intro_screen.dart';
 import 'package:movie_list_app/screens/movie_list_screen.dart';
 import 'package:provider/provider.dart';
@@ -18,7 +21,8 @@ class HomePage extends StatelessWidget {
             } else if (snapshot.hasData) {
               return MovieListScreen();
             } else {
-              return IntroScreen();
+              return Platform.isIOS ? IntroIosScreen() : IntroScreen();
+              // return IntroIosScreen();
             }
           },
         ),
