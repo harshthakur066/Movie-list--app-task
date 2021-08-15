@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:movie_list_app/providers/google_signin.dart';
 import 'package:movie_list_app/screens/movie_list_screen.dart';
+import 'package:provider/provider.dart';
 
 class IntroScreen extends StatefulWidget {
   IntroScreen({Key? key}) : super(key: key);
@@ -67,9 +69,14 @@ class _IntroScreenState extends State<IntroScreen> {
                       color: Colors.transparent,
                       child: GestureDetector(
                         onTap: () {
-                          Navigator.of(context).pushNamed(
-                            MovieListScreen.routeName,
+                          final provider = Provider.of<GoogleSignInProvider>(
+                            context,
+                            listen: false,
                           );
+                          provider.login();
+                          // Navigator.of(context).pushNamed(
+                          //   MovieListScreen.routeName,
+                          // );
                         },
                         child: Container(
                           decoration: BoxDecoration(

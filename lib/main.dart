@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:movie_list_app/providers/google_signin.dart';
+import 'package:movie_list_app/screens/home_sceen.dart';
 import 'package:movie_list_app/screens/intro_screen.dart';
 import 'package:movie_list_app/screens/movie_edit_screen.dart';
 import 'package:provider/provider.dart';
@@ -29,8 +31,15 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider.value(
-      value: Movies(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(
+          value: GoogleSignInProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: Movies(),
+        ),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Movie List App',
@@ -38,7 +47,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.teal,
           accentColor: Colors.blueGrey,
         ),
-        home: IntroScreen(),
+        home: HomePage(),
         routes: {
           MovieListScreen.routeName: (ctx) => MovieListScreen(),
           MovieAddScreen.routeName: (ctx) => MovieAddScreen(),
