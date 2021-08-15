@@ -17,6 +17,7 @@ class _IntroScreenState extends State<IntroScreen> {
         resizeToAvoidBottomInset: false,
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             Container(
               child: Stack(
@@ -32,21 +33,22 @@ class _IntroScreenState extends State<IntroScreen> {
                   ),
                   Container(
                     padding: EdgeInsets.fromLTRB(16.0, 175.0, 0.0, 0.0),
-                    child: Text('There',
-                        style: TextStyle(
-                          fontSize: 80.0,
-                          fontWeight: FontWeight.bold,
-                          // color: Theme.of(context).accentColor,
-                        )),
-                  ),
-                  Container(
-                    padding: EdgeInsets.fromLTRB(220.0, 175.0, 0.0, 0.0),
-                    child: Text('.',
-                        style: TextStyle(
-                          fontSize: 80.0,
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context).accentColor,
-                        )),
+                    child: Row(
+                      children: [
+                        Text('There',
+                            style: TextStyle(
+                              fontSize: 80.0,
+                              fontWeight: FontWeight.bold,
+                              // color: Theme.of(context).accentColor,
+                            )),
+                        Text('.',
+                            style: TextStyle(
+                              fontSize: 80.0,
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).accentColor,
+                            )),
+                      ],
+                    ),
                   ),
                   Container(
                     padding: EdgeInsets.fromLTRB(16.0, 270.0, 0.0, 0.0),
@@ -61,7 +63,8 @@ class _IntroScreenState extends State<IntroScreen> {
               ),
             ),
             Container(
-                padding: EdgeInsets.only(top: 235.0, left: 20.0, right: 20.0),
+                padding:
+                    EdgeInsets.only(top: 0, left: 20.0, right: 20.0, bottom: 0),
                 child: Column(
                   children: <Widget>[
                     Container(
