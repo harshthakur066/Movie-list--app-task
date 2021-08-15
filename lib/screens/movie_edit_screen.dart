@@ -10,11 +10,7 @@ import 'package:provider/provider.dart';
 
 class MovieEditScreen extends StatefulWidget {
   static const routeName = '/edit-movie';
-  // late String _prevTitle;
-  // late String _pevDirector;
-  // late File _prevImage;
 
-  // MovieEditScreen(this._prevTitle, this._pevDirector, this._prevImage);
   MovieEditScreen({Key? key}) : super(key: key);
 
   @override
@@ -22,35 +18,9 @@ class MovieEditScreen extends StatefulWidget {
 }
 
 class _MovieEditScreenState extends State<MovieEditScreen> {
-  // final _tiltleController = TextEditingController();
-  // final _directorController = TextEditingController();
   String _titleValue = '';
   String _directorValue = '';
   File? _pickedImage;
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   initializeMovie();
-  // }
-
-  // @override
-  // void afterFirstLayout(BuildContext context) {
-  //   // Calling the same function "after layout" to resolve the issue.
-  //   initializeMovie();
-  // }
-
-  // void initializeMovie() {
-  //   final movieId = ModalRoute.of(context)?.settings.arguments as String;
-  //   final loadedMovie =
-  //       Provider.of<Movies>(context, listen: false).findById(movieId);
-
-  //   setState(() {
-  //     _titleValue = loadedMovie.title;
-  //     _directorValue = loadedMovie.director;
-  //     _pickedImage = loadedMovie.image;
-  //   });
-  // }
 
   void _selectImage(File pickedImage) {
     _pickedImage = pickedImage;
@@ -59,9 +29,9 @@ class _MovieEditScreenState extends State<MovieEditScreen> {
   void _editMovie() {
     print('screen call');
 
-    print('_titleValue $_titleValue');
-    print('_directorValue $_directorValue');
-    print('_pickedImage $_pickedImage');
+    // print('_titleValue $_titleValue');
+    // print('_directorValue $_directorValue');
+    // print('_pickedImage $_pickedImage');
 
     if (_titleValue.isEmpty || _directorValue.isEmpty || _pickedImage == null) {
       print('something missing');
@@ -81,7 +51,7 @@ class _MovieEditScreenState extends State<MovieEditScreen> {
 
     Provider.of<Movies>(context, listen: false).editData(movieId, _editedData);
     Navigator.of(context).pop();
-    print('done');
+    // print('done');
     setState(() {});
   }
 
@@ -113,7 +83,6 @@ class _MovieEditScreenState extends State<MovieEditScreen> {
                   TextField(
                     decoration: InputDecoration(
                       hintText: 'Movie Name',
-                      // prefix: Icon(Icons.person, color: Colors.orange),
                       prefixIcon: Icon(
                         Icons.movie,
                         color: Theme.of(context).primaryColor,
@@ -136,7 +105,6 @@ class _MovieEditScreenState extends State<MovieEditScreen> {
                   TextField(
                     decoration: InputDecoration(
                       hintText: 'Diector Name',
-                      // prefix: Icon(Icons.person, color: Colors.orange),
                       prefixIcon: Icon(
                         Icons.person,
                         color: Theme.of(context).primaryColor,
