@@ -53,19 +53,49 @@ class _MovieAddScreenState extends State<MovieAddScreen> {
           Expanded(
               child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.fromLTRB(8, 40, 8, 8),
               child: Column(
                 children: [
                   TextField(
-                    decoration: InputDecoration(labelText: 'Name'),
                     controller: _tiltleController,
+                    decoration: InputDecoration(
+                      hintText: 'Movie Name',
+                      // prefix: Icon(Icons.person, color: Colors.orange),
+                      prefixIcon: Icon(
+                        Icons.movie,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      contentPadding:
+                          EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Theme.of(context).accentColor,
+                        ),
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                    ),
                   ),
                   SizedBox(height: 20),
                   TextField(
-                    decoration: InputDecoration(labelText: 'Director'),
                     controller: _directorController,
+                    decoration: InputDecoration(
+                      hintText: 'Diector Name',
+                      // prefix: Icon(Icons.person, color: Colors.orange),
+                      prefixIcon: Icon(
+                        Icons.person,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      contentPadding:
+                          EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Theme.of(context).accentColor,
+                        ),
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                    ),
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: 40),
                   ImageInput(_selectImage, null),
                 ],
               ),

@@ -45,6 +45,15 @@ class _IntroScreenState extends State<IntroScreen> {
                           fontWeight: FontWeight.bold,
                           color: Theme.of(context).accentColor,
                         )),
+                  ),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(16.0, 270.0, 0.0, 0.0),
+                    child: Text('Have your movies at one place.',
+                        style: TextStyle(
+                          fontSize: 22,
+                          // fontWeight: FontWeight.bold,
+                          color: Theme.of(context).accentColor,
+                        )),
                   )
                 ],
               ),
@@ -81,7 +90,7 @@ class _IntroScreenState extends State<IntroScreen> {
                               ),
                               SizedBox(width: 10.0),
                               Center(
-                                child: Text('Log in with Google',
+                                child: Text('LOGIN WITH GOOGLE',
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontFamily: 'Montserrat',

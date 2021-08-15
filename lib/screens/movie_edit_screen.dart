@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:after_layout/after_layout.dart';
+
 import 'package:movie_list_app/models/movie.dart';
 import 'package:movie_list_app/providers/movies.dart';
 import 'package:movie_list_app/widgets/image_input.dart';
@@ -20,24 +22,35 @@ class MovieEditScreen extends StatefulWidget {
 }
 
 class _MovieEditScreenState extends State<MovieEditScreen> {
-  final _tiltleController = TextEditingController();
-  final _directorController = TextEditingController();
+  // final _tiltleController = TextEditingController();
+  // final _directorController = TextEditingController();
+  String _titleValue = '';
+  String _directorValue = '';
   File? _pickedImage;
 
-  @override
-  void initState() {
-    super.initState();
-    initializeMovie();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   initializeMovie();
+  // }
 
-  void initializeMovie() {
-    final movieId = ModalRoute.of(context)?.settings.arguments as String;
-    final loadedMovie =
-        Provider.of<Movies>(context, listen: false).findById(movieId);
-    _tiltleController.text = loadedMovie.title;
-    _directorController.text = loadedMovie.director;
-    _pickedImage = loadedMovie.image;
-  }
+  // @override
+  // void afterFirstLayout(BuildContext context) {
+  //   // Calling the same function "after layout" to resolve the issue.
+  //   initializeMovie();
+  // }
+
+  // void initializeMovie() {
+  //   final movieId = ModalRoute.of(context)?.settings.arguments as String;
+  //   final loadedMovie =
+  //       Provider.of<Movies>(context, listen: false).findById(movieId);
+
+  //   setState(() {
+  //     _titleValue = loadedMovie.title;
+  //     _directorValue = loadedMovie.director;
+  //     _pickedImage = loadedMovie.image;
+  //   });
+  // }
 
   void _selectImage(File pickedImage) {
     _pickedImage = pickedImage;
@@ -45,11 +58,15 @@ class _MovieEditScreenState extends State<MovieEditScreen> {
 
   void _editMovie() {
     print('screen call');
-    // if (_tiltleController.text.isEmpty ||
-    //     _directorController.text.isEmpty ||
-    //     _pickedImage == null) {
-    //   return;
-    // }
+
+    print('_titleValue $_titleValue');
+    print('_directorValue $_directorValue');
+    print('_pickedImage $_pickedImage');
+
+    if (_titleValue.isEmpty || _directorValue.isEmpty || _pickedImage == null) {
+      print('something missing');
+      return;
+    }
     final movieId = ModalRoute.of(context)?.settings.arguments as String;
     // final loadedMovie =
     //     Provider.of<Movies>(context, listen: false).findById(movieId);
@@ -57,14 +74,15 @@ class _MovieEditScreenState extends State<MovieEditScreen> {
 
     var _editedData = Movie(
       id: movieId,
-      title: _tiltleController.text,
-      director: _directorController.text,
+      title: _titleValue,
+      director: _directorValue,
       image: _pickedImage as File,
     );
 
     Provider.of<Movies>(context, listen: false).editData(movieId, _editedData);
     Navigator.of(context).pop();
     print('done');
+    setState(() {});
   }
 
   @override
@@ -72,7 +90,12 @@ class _MovieEditScreenState extends State<MovieEditScreen> {
     final movieId = ModalRoute.of(context)?.settings.arguments as String;
     final loadedMovie =
         Provider.of<Movies>(context, listen: false).findById(movieId);
-    print(loadedMovie.image);
+
+    setState(() {
+      _pickedImage = loadedMovie.image;
+      _titleValue = loadedMovie.title;
+      _directorValue = loadedMovie.director;
+    });
 
     return Scaffold(
       appBar: AppBar(
@@ -84,29 +107,71 @@ class _MovieEditScreenState extends State<MovieEditScreen> {
           Expanded(
               child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.fromLTRB(8, 40, 8, 8),
               child: Column(
                 children: [
                   TextField(
-                    decoration: InputDecoration(labelText: 'Name'),
+                    decoration: InputDecoration(
+                      hintText: 'Movie Name',
+                      // prefix: Icon(Icons.person, color: Colors.orange),
+                      prefixIcon: Icon(
+                        Icons.movie,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      contentPadding:
+                          EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Theme.of(context).accentColor,
+                        ),
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                    ),
                     controller: TextEditingController(text: loadedMovie.title),
+                    onChanged: (value) {
+                      _titleValue = value;
+                    },
                   ),
                   SizedBox(height: 20),
                   TextField(
-                      decoration: InputDecoration(labelText: 'Director'),
-                      controller: _directorController
-                      // TextEditingController(text: loadedMovie.director),
+                    decoration: InputDecoration(
+                      hintText: 'Diector Name',
+                      // prefix: Icon(Icons.person, color: Colors.orange),
+                      prefixIcon: Icon(
+                        Icons.person,
+                        color: Theme.of(context).primaryColor,
                       ),
-                  SizedBox(height: 20),
-                  ImageInput(_selectImage, _pickedImage),
+                      contentPadding:
+                          EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Theme.of(context).accentColor,
+                        ),
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                    ),
+                    controller:
+                        TextEditingController(text: loadedMovie.director),
+                    onChanged: (value) {
+                      _directorValue = value;
+                    },
+                  ),
+                  SizedBox(height: 40),
+                  ImageInput(_selectImage, loadedMovie.image),
                 ],
               ),
             ),
           )),
           RaisedButton.icon(
             onPressed: _editMovie,
-            icon: Icon(Icons.add),
-            label: Text('Save Changes'),
+            icon: Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
+            label: Text(
+              'Save Changes',
+              style: TextStyle(color: Colors.white),
+            ),
             elevation: 0,
             materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
             color: Theme.of(context).accentColor,
