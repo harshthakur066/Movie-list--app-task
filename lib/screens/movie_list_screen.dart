@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_list_app/providers/google_signin.dart';
 import 'package:movie_list_app/providers/movies.dart';
 import 'package:movie_list_app/widgets/movie_item.dart';
 import 'package:provider/provider.dart';
@@ -20,6 +21,17 @@ class MovieListScreen extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).pushNamed(MovieAddScreen.routeName);
             },
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(3, 0, 15, 0),
+            child: IconButton(
+              icon: Icon(Icons.logout),
+              onPressed: () {
+                final provider =
+                    Provider.of<GoogleSignInProvider>(context, listen: false);
+                provider.logout();
+              },
+            ),
           ),
         ],
       ),
