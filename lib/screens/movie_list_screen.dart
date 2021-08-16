@@ -56,19 +56,13 @@ class MovieListScreen extends StatelessWidget {
                               style: Theme.of(context).textTheme.headline6,
                             ),
                           )
-                        : RefreshIndicator(
-                            onRefresh: () async {
-                              await Provider.of<Movies>(context).fetchData();
-                            },
-                            child: ListView.builder(
-                                // reverse: true,
-                                itemCount: movies.items.length,
-                                itemBuilder: (ctx, i) {
-                                  var reversedList =
-                                      movies.items.reversed.toList();
-                                  return MovieItem(reversedList[i]);
-                                }),
-                          ),
+                        : ListView.builder(
+                            // reverse: true,
+                            itemCount: movies.items.length,
+                            itemBuilder: (ctx, i) {
+                              var reversedList = movies.items.reversed.toList();
+                              return MovieItem(reversedList[i]);
+                            }),
                   ),
       ),
     );
