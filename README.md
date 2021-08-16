@@ -1,6 +1,8 @@
 # movie_list_app
 
-A new Flutter project.
+A new Flutter project, movie list app with all CRUD operations and saving data to SQLite database with Google Authentication.
+
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/ZOCGAtRV3Vs/0.jpg)](http://www.youtube.com/watch?v=ZOCGAtRV3Vs "Video Title")
 
 ## Getting Started
 
