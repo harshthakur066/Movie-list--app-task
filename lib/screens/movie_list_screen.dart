@@ -42,31 +42,34 @@ class MovieListScreen extends StatelessWidget {
       ),
       body: FutureBuilder(
         future: Provider.of<Movies>(context, listen: false).fetchData(),
-        builder: (ctx, snapshot) => snapshot.connectionState ==
-                ConnectionState.waiting
-            ? Center(
-                child: CircularProgressIndicator(),
-              )
-            : Consumer<Movies>(
-                // child: null,
-                builder: (ctx, movies, _) => movies.items.length <= 0
-                    ? Center(
-                        child: Text(
-                          'Got no movies yet, start adding some!',
-                          style: Theme.of(context).textTheme.headline6,
-                        ),
-                      )
-                    : RefreshIndicator(
-                        onRefresh: () async {
-                          await Provider.of<Movies>(context).fetchData();
-                        },
-                        child: ListView.builder(
-                          // reverse: true,
-                          itemCount: movies.items.length,
-                          itemBuilder: (ctx, i) => MovieItem(movies.items[i]),
-                        ),
-                      ),
-              ),
+        builder: (ctx, snapshot) =>
+            snapshot.connectionState == ConnectionState.waiting
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : Consumer<Movies>(
+                    // child: null,
+                    builder: (ctx, movies, _) => movies.items.length <= 0
+                        ? Center(
+                            child: Text(
+                              'Got no movies yet, start adding some!',
+                              style: Theme.of(context).textTheme.headline6,
+                            ),
+                          )
+                        : RefreshIndicator(
+                            onRefresh: () async {
+                              await Provider.of<Movies>(context).fetchData();
+                            },
+                            child: ListView.builder(
+                                // reverse: true,
+                                itemCount: movies.items.length,
+                                itemBuilder: (ctx, i) {
+                                  var reversedList =
+                                      movies.items.reversed.toList();
+                                  return MovieItem(reversedList[i]);
+                                }),
+                          ),
+                  ),
       ),
     );
   }
