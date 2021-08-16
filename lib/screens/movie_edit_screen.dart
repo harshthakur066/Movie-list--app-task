@@ -34,6 +34,17 @@ class _MovieEditScreenState extends State<MovieEditScreen> {
 
     if (_titleValue.isEmpty || _directorValue.isEmpty || _pickedImage == null) {
       print('something missing');
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Fill all the feilds.'),
+          duration: Duration(seconds: 2),
+          // action: SnackBarAction(
+          //   label: 'UNDO',
+          //   onPressed: () => cart.removeOneItem(product.id),
+          // ),
+        ),
+      );
       return;
     }
     final movieId = ModalRoute.of(context)?.settings.arguments as String;

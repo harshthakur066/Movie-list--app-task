@@ -27,6 +27,17 @@ class _MovieAddScreenState extends State<MovieAddScreen> {
     if (_tiltleController.text.isEmpty ||
         _directorController.text.isEmpty ||
         _pickedImage == null) {
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Fill all the feilds.'),
+          duration: Duration(seconds: 2),
+          // action: SnackBarAction(
+          //   label: 'UNDO',
+          //   onPressed: () => cart.removeOneItem(product.id),
+          // ),
+        ),
+      );
       return;
     }
 
