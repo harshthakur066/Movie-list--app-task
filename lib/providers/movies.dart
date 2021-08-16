@@ -23,8 +23,8 @@ class Movies with ChangeNotifier {
     //   director: pickedDirector,
     //   image: pickedImage,
     // );
-    _items.insert(0, newMovie);
-    // _items.
+    // _items.insert(0, newMovie);
+    _items.add(newMovie);
     notifyListeners();
 
     await DBHelper.insert(
